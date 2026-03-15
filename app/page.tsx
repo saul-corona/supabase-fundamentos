@@ -5,6 +5,7 @@ import { useState } from "react";
 import { getTimeAgo } from "./utils/time";
 import { posts as initialPosts, type Post } from "./mocks/posts";
 
+
 function HeartIcon({ filled }: { filled: boolean }) {
   if (filled) {
     return (
@@ -107,6 +108,7 @@ export default function Home() {
       )
     );
   };
+
 
   return (
     <div className="min-h-screen bg-background">
