@@ -7,6 +7,8 @@ import { type Post } from "./mocks/posts";
 
 import { supabase } from "./utils/client";
 
+
+
 function HeartIcon({ filled }: { filled: boolean }) {
   if (filled) {
     return (
@@ -51,22 +53,15 @@ function PostCard({
       <div className="flex items-center gap-3 p-4">
         <div className="relative w-10 h-10 rounded-full overflow-hidden ring-2 ring-primary">
           <Image
-            src={
-              post.user?.avatar ||
-              "https://xynshcnkxdliapebmyaz.supabase.co/storage/v1/object/public/images/posts/unnamed-14.jpg"
-            }
+            src={post.user?.avatar || "https://vwuxgjjnclkbxmmafgin.supabase.co/storage/v1/object/public/images/profile/Profile-2026.png"}
             alt={post.user?.username || "default_user"}
             fill
             className="object-cover"
           />
         </div>
         <div className="flex flex-col">
-          <span className="font-semibold text-foreground">
-            {post.user?.username || "default_user"}
-          </span>
-          <span className="text-xs text-foreground/50">
-            {getTimeAgo(new Date(post.created_at))}
-          </span>
+          <span className="font-semibold text-foreground">{post.user?.username || "default_user"}</span>
+          <span className="text-xs text-foreground/50">{getTimeAgo(new Date(post.created_at))}</span>
         </div>
       </div>
 
@@ -98,9 +93,7 @@ function PostCard({
 
         {/* Caption */}
         <p className="mt-2 text-foreground">
-          <span className="font-semibold">
-            {post.user?.username || "default_user"}
-          </span>{" "}
+          <span className="font-semibold">{post.user?.username || "default_user"}</span>{" "}
           <span className="text-foreground/80">{post.caption}</span>
         </p>
       </div>
@@ -127,20 +120,23 @@ export default function Home() {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const { data, error } = await supabase
-        .from("posts_new")
-        .select("*")
-        .order("created_at", { ascending: false });
+      const {data, error} = await supabase
+      .from("posts_new")
+      .select("*")
+      .order("created_at", { ascending: false });
 
-      if (error) {
-        console.error("Error al obtener los posts:", error);
+      if (error){
+        console.error("Error al obtener los posts", error)
       } else {
-        setPosts(data);
+        console.log("Posts ordenados por fecha", data)
+        setPosts(data)
       }
-    };
+    }
 
-    fetchPosts();
+    fetchPosts()
+    
   }, []);
+
 
   return (
     <div className="min-h-screen bg-background">
