@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { getTimeAgo } from "../utils/time";
-import { type Post } from "../mocks/posts";
+import { Post } from "../mocks/posts";
 
 import { supabase } from "../utils/client";
 
