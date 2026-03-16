@@ -16,12 +16,24 @@ export default function LoginPage() {
     setMessage(null);
 
     try {
-      const { error } = await supabase.auth.signInWithPassword({
+      const { error, data } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
 
       if (error) throw error;
+      
+      // Obtener datso del usuario logeado 
+
+      const {
+        data: {user}, 
+      } =  await supabase.auth.getUser();
+      const metadata = user?.user_metadata; 
+
+      console.log("😀 Usuario logueado", user); 
+      console.log("⬜ Metadata", metadata);
+
+
 
       setMessage({ type: "success", text: "¡Inicio de sesión exitoso!" });
     } catch (error) {
