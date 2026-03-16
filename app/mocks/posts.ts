@@ -1,6 +1,6 @@
 export interface Post {
   id: number | string;
-  user: {
+  user?: {
     username: string;
     avatar: string;
   };
