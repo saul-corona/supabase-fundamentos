@@ -3,9 +3,9 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { getTimeAgo } from "../utils/time";
-import { Post } from "../mocks/posts";
+import { Post } from "../types";
 
-import { supabase } from "../utils/client";
+import { supabase } from "../lib/client";
 
 function HeartIcon() {
   return (
@@ -62,7 +62,7 @@ function Modal({
         <div className="flex items-center gap-3 p-4 border-b border-border">
           <div className="relative w-10 h-10 rounded-full overflow-hidden ring-2 ring-primary">
             <Image
-              src={post.user?.avatar || "https://xynshcnkxdliapebmyaz.supabase.co/storage/v1/object/public/images/posts/unnamed-14.jpg"}
+              src={post.user?.avatar || "https://vwuxgjjnclkbxmmafgin.supabase.co/storage/v1/object/public/images/profile/Profile-2026.png"}
               alt={post.user?.username || "default_user"}
               fill
               className="object-cover"
